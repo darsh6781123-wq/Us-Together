@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UsTogether ❤️</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    color:white;
+    background:
+        radial-gradient(circle at 10% 10%,#ff75b0,transparent 30%),
+        radial-gradient(circle at 90% 90%,#7168ff,transparent 30%),
+        linear-gradient(135deg,#171126,#321a46,#11182f);
+}
+
+.app{
+    max-width:520px;
+    min-height:100vh;
+    margin:auto;
+}
+
+/* COMMON */
+
+.hidden{
+    display:none !important;
+}
+
+.screen{
+    min-height:100vh;
+}
+
+button{
+    cursor:pointer;
+}
+
+/* WELCOME */
+
+.welcome-screen{
+    padding:30px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.setup-box{
+    width:100%;
+    padding:28px;
+    border-radius:30px;
+    background:rgba(255,255,255,.10);
+    border:1px solid rgba(255,255,255,.15);
+    backdrop-filter:blur(18px);
+    box-shadow:0 20px 50px rgba(0,0,0,.25);
+}
+
+.logo{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.logo-icon{
+    width:82px;
+    height:82px;
+    margin:auto;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:44px;
+    background:rgba(255,255,255,.12);
+}
+
+.logo h1{
+    margin-top:15px;
+    font-size:34px;
+}
+
+.logo p{
+    margin-top:7px;
+    color:#d9ccdf;
+}
+
+.choice-buttons{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-top:22px;
+}
+
+.choice{
+    padding:18px 10px;
+    border-radius:18px;
+    border:1px solid rgba(255,255,255,.12);
+    background:rgba(255,255,255,.08);
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+}
+
+.choice-icon{
+    display:block;
+    font-size:28px;
+    margin-bottom:8px;
+}
+
+.form{
+    margin-top:25px;
+}
+
+.form h2{
+    font-size:21px;
+    margin-bottom:8px;
+}
+
+.description{
+    color:#cfc2d5;
+    font-size:14px;
+    line-height:1.5;
+    margin-bottom:22px;
+}
+
+label{
+    display:block;
+    font-size:14px;
+    color:#e6dbe9;
+    margin-bottom:7px;
+}
+
+.input{
+    width:100%;
+    padding:16px;
+    margin-bottom:17px;
+    border:none;
+    outline:none;
+    border-radius:16px;
+    color:white;
+    background:rgba(255,255,255,.10);
+    border:1px solid rgba(255,255,255,.12);
+    font-size:16px;
+}
+
+.input::placeholder{
+    color:#afa2b7;
+}
+
+.primary{
+    width:100%;
+    padding:16px;
+    border:none;
+    border-radius:16px;
+    color:white;
+    font-size:17px;
+    font-weight:bold;
+    background:linear-gradient(135deg,#ff67a7,#9274ff);
+}
+
+.back{
+    width:100%;
+    padding:13px;
+    margin-top:10px;
+    border:none;
+    background:transparent;
+    color:#d8cbdc;
+    font-size:14px;
+}
+
+.private{
+    text-align:center;
+    margin-top:20px;
+    color:#bfb2c5;
+    font-size:13px;
+}
+
+/* CODE RESULT */
+
+.code-result{
+    margin-top:20px;
+    padding:20px;
+    text-align:center;
+    border-radius:20px;
+    background:rgba(255,255,255,.08);
+}
+
+.code-result p{
+    color:#d5c8da;
+    font-size:14px;
+}
+
+.generated-code{
+    margin-top:10px;
+    font-size:30px;
+    font-weight:bold;
+    letter-spacing:5px;
+    color:#ff9fc6;
+}
+
+/* HOME */
+
+#homeScreen{
+    display:none;
+    padding-bottom:90px;
+}
+
+.header{
+    padding:20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:rgba(255,255,255,.07);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid rgba(255,255,255,.1);
+}
+
+.partner{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.avatar{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:28px;
+    background:linear-gradient(135deg,#ff75ae,#8d73ff);
+}
+
+.partner h2{
+    font-size:19px;
+}
+
+.online{
+    margin-top:4px;
+    color:#72ff98;
+    font-size:13px;
+}
+
+.call-buttons{
+    display:flex;
+    gap:8px;
+}
+
+.icon{
+    width:43px;
+    height:43px;
+    border:0;
+    border-radius:50%;
+    color:white;
+    font-size:20px;
+    background:rgba(255,255,255,.1);
+}
+
+.content{
+    padding:22px 18px;
+}
+
+.welcome h1{
+    font-size:29px;
+    margin-bottom:7px;
+}
+
+.welcome p{
+    color:#d7cadc;
+    margin-bottom:22px;
+}
+
+.card{
+    padding:22px;
+    margin-bottom:18px;
+    border-radius:25px;
+    background:rgba(255,255,255,.09);
+    border:1px solid rgba(255,255,255,.12);
+    backdrop-filter:blur(18px);
+}
+
+.card-title{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:14px;
+}
+
+.card-title span{
+    font-size:25px;
+}
+
+.card-title h2{
+    font-size:19px;
+}
+
+.question{
+    color:#f2e9f5;
+    font-size:17px;
+    line-height:1.5;
+}
+
+.home-button{
+    width:100%;
+    margin-top:17px;
+    padding:14px;
+    border:0;
+    border-radius:15px;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    background:linear-gradient(135deg,#ff69a8,#9173ff);
+}
+
+.actions{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-top:16px;
+}
+
+.action{
+    padding:17px 10px;
+    border-radius:20px;
+    color:white;
+    border:1px solid rgba(255,255,255,.1);
+    background:rgba(255,255,255,.08);
+}
+
+.action-icon{
+    display:block;
+    font-size:27px;
+    margin-bottom:7px;
+}
+
+.message{
+    margin-top:15px;
+    padding:14px 16px;
+    border-radius:18px;
+    background:rgba(255,255,255,.1);
+    color:#eee5f1;
+}
+
+.bottom{
+    position:fixed;
+    bottom:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:100%;
+    max-width:520px;
+    height:75px;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    background:rgba(22,14,39,.94);
+    backdrop-filter:blur(20px);
+    border-top:1px solid rgba(255,255,255,.1);
+}
+
+.nav{
+    border:0;
+    background:transparent;
+    color:#d0c5d4;
+    font-size:22px;
+}
+
+.nav span{
+    display:block;
+    font-size:11px;
+    margin-top:4px;
+}
+
+.nav.active{
+    color:#ff80b6;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<!-- START SCREEN -->
+
+<section id="startScreen" class="screen welcome-screen">
+
+<div class="setup-box">
+
+<div class="logo">
+    <div class="logo-icon">❤️</div>
+    <h1>UsTogether</h1>
+    <p>Your private space for two.</p>
+</div>
+
+<h2 style="font-size:21px;">
+    How would you like to start?
+</h2>
+
+<div class="choice-buttons">
+
+<button class="choice" onclick="showCreate()">
+    <span class="choice-icon">💑</span>
+    Create Couple
+</button>
+
+<button class="choice" onclick="showJoin()">
+    <span class="choice-icon">🔗</span>
+    Join Couple
+</button>
+
+</div>
+
+<div class="private">
+    🔒 Private couple connection
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CREATE COUPLE -->
+
+<section id="createScreen" class="screen welcome-screen hidden">
+
+<div class="setup-box">
+
+<div class="logo">
+    <div class="logo-icon">💑</div>
+    <h1>Create Couple</h1>
+    <p>Create your private couple space.</p>
+</div>
+
+<div class="form">
+
+<label>Your Name</label>
+
+<input
+    class="input"
+    id="createYourName"
+    type="text"
+    placeholder="Enter your name"
+>
+
+
+<label>Partner's Name</label>
+
+<input
+    class="input"
+    id="createPartnerName"
+    type="text"
+    placeholder="Enter your partner's name"
+>
+
+
+<button class="primary" onclick="createCouple()">
+    Create Private Code 🔐
+</button>
+
+
+<div id="codeResult" class="code-result hidden">
+
+<p>Your private couple code</p>
+
+<div
+    id="generatedCode"
+    class="generated-code">
+</div>
+
+<p style="margin-top:12px;">
+    Share this code with your partner.
+</p>
+
+<button
+    class="primary"
+    style="margin-top:15px;"
+    onclick="openCreatedHome()">
+
+    Enter UsTogether ❤️
+
+</button>
+
+</div>
+
+<button class="back" onclick="showStart()">
+    ← Back
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- JOIN COUPLE -->
+
+<section id="joinScreen" class="screen welcome-screen hidden">
+
+<div class="setup-box">
+
+<div class="logo">
+    <div class="logo-icon">🔗</div>
+    <h1>Join Couple</h1>
+    <p>Enter your partner's private code.</p>
+</div>
+
+<div class="form">
+
+<label>Your Name</label>
+
+<input
+    class="input"
+    id="joinYourName"
+    type="text"
+    placeholder="Enter your name"
+>
+
+
+<label>Partner's Name</label>
+
+<input
+    class="input"
+    id="joinPartnerName"
+    type="text"
+    placeholder="Enter your partner's name"
+>
+
+
+<label>Partner's Private Code</label>
+
+<input
+    class="input"
+    id="joinCode"
+    type="text"
+    placeholder="Enter couple code"
+    maxlength="12"
+>
+
+
+<button class="primary" onclick="joinCouple()">
+    Connect ❤️
+</button>
+
+<button class="back" onclick="showStart()">
+    ← Back
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- HOME -->
+
+<section id="homeScreen">
+
+<header class="header">
+
+<div class="partner">
+
+<div class="avatar">❤️</div>
+
+<div>
+<h2 id="homePartnerName">Partner</h2>
+<div class="online">● Online</div>
+</div>
+
+</div>
+
+<div class="call-buttons">
+
+<button class="icon" onclick="demo('Voice Call')">
+📞
+</button>
+
+<button class="icon" onclick="demo('Video Call')">
+📹
+</button>
+
+</div>
+
+</header>
+
+
+<main class="content">
+
+<div class="welcome">
+
+<h1 id="welcomeName">
+Welcome ❤️
+</h1>
+
+<p>Your private space for two.</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-title">
+<span>💭</span>
+<h2>Today's Question</h2>
+</div>
+
+<p class="question">
+What is one thing you love most about your partner? ❤️
+</p>
+
+<button class="home-button" onclick="demo('Daily Question')">
+Answer Together
+</button>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-title">
+<span>💕</span>
+<h2>Couple Check</h2>
+</div>
+
+<p class="question">
+Did you ask your partner how they are feeling today?
+</p>
+
+<div class="actions">
+
+<button class="action" onclick="demo('Yes')">
+<span class="action-icon">❤️</span>
+Yes
+</button>
+
+<button class="action" onclick="demo('Not Yet')">
+<span class="action-icon">💌</span>
+Not Yet
+</button>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-title">
+<span>💬</span>
+<h2>Recent Chat</h2>
+</div>
+
+<div class="message">
+Hey ❤️ How are you?
+</div>
+
+<button class="home-button" onclick="demo('Chat')">
+Open Chat
+</button>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-title">
+<span>✨</span>
+<h2>Quick Features</h2>
+</div>
+
+<div class="actions">
+
+<button class="action" onclick="demo('Saved Messages')">
+<span class="action-icon">⭐</span>
+Saved
+</button>
+
+<button class="action" onclick="demo('Notifications')">
+<span class="action-icon">🔔</span>
+Notifications
+</button>
+
+<button class="action" onclick="demo('Voice Message')">
+<span class="action-icon">🎤</span>
+Voice
+</button>
+
+<button class="action" onclick="demo('Settings')">
+<span class="action-icon">⚙️</span>
+Settings
+</button>
+
+</div>
+
+</div>
+
+</main>
+
+
+<nav class="bottom">
+
+<button class="nav active">
+🏠
+<span>Home</span>
+</button>
+
+<button class="nav" onclick="demo('Chat')">
+💬
+<span>Chat</span>
+</button>
+
+<button class="nav" onclick="demo('Saved Messages')">
+⭐
+<span>Saved</span>
+</button>
+
+<button class="nav" onclick="demo('Settings')">
+⚙️
+<span>Settings</span>
+</button>
+
+</nav>
+
+</section>
+
+</div>
+
+
+<script>
+
+/* SCREEN SWITCHING */
+
+function hideAll(){
+
+    document.getElementById("startScreen")
+        .classList.add("hidden");
+
+    document.getElementById("createScreen")
+        .classList.add("hidden");
+
+    document.getElementById("joinScreen")
+        .classList.add("hidden");
+
+    document.getElementById("homeScreen")
+        .style.display="none";
+}
+
+
+function showStart(){
+
+    hideAll();
+
+    document.getElementById("startScreen")
+        .classList.remove("hidden");
+}
+
+
+function showCreate(){
+
+    hideAll();
+
+    document.getElementById("createScreen")
+        .classList.remove("hidden");
+}
+
+
+function showJoin(){
+
+    hideAll();
+
+    document.getElementById("joinScreen")
+        .classList.remove("hidden");
+}
+
+
+/* CREATE COUPLE */
+
+function createCouple(){
+
+    const yourName =
+        document.getElementById("createYourName")
+        .value.trim();
+
+    const partnerName =
+        document.getElementById("createPartnerName")
+        .value.trim();
+
+    if(!yourName || !partnerName){
+
+        alert("Please enter both names ❤️");
+        return;
+    }
+
+
+    /* Demo code for now */
+
+    const code =
+        "US" +
+        Math.floor(100000 + Math.random()*900000);
+
+
+    localStorage.setItem(
+        "usYourName",
+        yourName
+    );
+
+    localStorage.setItem(
+        "usPartnerName",
+        partnerName
+    );
+
+    localStorage.setItem(
+        "usCoupleCode",
+        code
+    );
+
+
+    document.getElementById(
+        "generatedCode"
+    ).textContent = code;
+
+
+    document.getElementById(
+        "codeResult"
+    ).classList.remove("hidden");
+
+}
+
+
+/* OPEN HOME AFTER CREATE */
+
+function openCreatedHome(){
+
+    const yourName =
+        localStorage.getItem("usYourName");
+
+    const partnerName =
+        localStorage.getItem("usPartnerName");
+
+
+    document.getElementById(
+        "welcomeName"
+    ).textContent =
+        "Welcome, " + yourName + " ❤️";
+
+
+    document.getElementById(
+        "homePartnerName"
+    ).textContent =
+        partnerName;
+
+
+    hideAll();
+
+    document.getElementById(
+        "homeScreen"
+    ).style.display="block";
+
+}
+
+
+/* JOIN COUPLE */
+
+function joinCouple(){
+
+    const yourName =
+        document.getElementById("joinYourName")
+        .value.trim();
+
+    const partnerName =
+        document.getElementById("joinPartnerName")
+        .value.trim();
+
+    const code =
+        document.getElementById("joinCode")
+        .value.trim();
+
+
+    if(!yourName || !partnerName || !code){
+
+        alert("Please fill in all the fields ❤️");
+        return;
+
+    }
+
+
+    /*
+       Temporary frontend test.
+
+       Real two-phone verification will be
+       connected with a database later.
+    */
+
+    const savedCode =
+        localStorage.getItem("usCoupleCode");
+
+
+    if(savedCode && code !== savedCode){
+
+        alert(
+            "This demo code does not match the code created on this device."
+        );
+
+        return;
+
+    }
+
+
+    localStorage.setItem(
+        "usYourName",
+        yourName
+    );
+
+    localStorage.setItem(
+        "usPartnerName",
+        partnerName
+    );
+
+
+    document.getElementById(
+        "welcomeName"
+    ).textContent =
+        "Welcome, " + yourName + " ❤️";
+
+
+    document.getElementById(
+        "homePartnerName"
+    ).textContent =
+        partnerName;
+
+
+    hideAll();
+
+    document.getElementById(
+        "homeScreen"
+    ).style.display="block";
+
+}
+
+
+/* DEMO BUTTON */
+
+function demo(feature){
+
+    alert(
+        feature +
+        " will be added as a real working feature in the next steps. ❤️"
+    );
+
+}html
+
+</script>
+
+</body>
+</>
